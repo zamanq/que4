@@ -2,30 +2,14 @@
   <div class="absolute inset-0 bg-black bg-opacity-50 mx-auto">
     <form @submit.prevent="submit" class="w-1/3 mx-auto bg-white rounded px-8 pt-6 pb-8 mt-10 mb-4">
       <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="post-title">Post title</label>
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="post-title">Category title</label>
         <input
           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="post-title"
           type="text"
-          placeholder="Post title"
-          v-model="post.title"
+          placeholder="Add New Category"
+          v-model="category.title"
         />
-        <p>{{post.title}}</p>
-      </div>
-      <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="categories">Categories</label>
-        <select
-          v-model="post.categories"
-          multiple
-          class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-          id="categories"
-        >
-          <option>Create New Category</option>
-          <option>New Mexico</option>
-          <option>Missouri</option>
-          <option>Texas</option>
-        </select>
-        <p>{{post.categories}}</p>
       </div>
       <div class="flex items-center justify-end">
         <button
@@ -43,28 +27,27 @@
 </template>
 <script>
 export default {
-  name: "AddPost",
+  name: "AddCategory",
 
   data() {
     return {
-      post: {
+      category: {
         title: "",
-        categories: [],
       },
     };
   },
   methods: {
     close() {
-      this.$emit("close");
+      this.$emit("closecat");
     },
     clearForm() {
-      this.post = {
+      this.category = {
         title: "",
       };
     },
     submit() {
-      if (this.post.title !== "") {
-        this.$emit("submit", this.post);
+      if (this.category.title !== "") {
+        this.$emit("submit", this.category);
         this.clearForm();
         this.close();
       }
