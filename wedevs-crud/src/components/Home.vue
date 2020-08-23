@@ -2,35 +2,44 @@
   <div>
     <nav class="flex items-center justify-between flex-wrap bg-purple-900 p-6">
       <div class="flex items-center flex-shrink-0 text-white mr-6">
-        <span class="font-bold text-xl tracking-tight">weDevs CRUD</span>
+        <span class="font-bold text-xl tracking-tight">
+          <router-link to="/">weDevs CRUD</router-link>
+        </span>
       </div>
       <div class="block flex-grow lg:flex lg:items-center lg:w-auto">
         <div class="text-sm lg:flex-grow">
-          <a
-            href="#"
+          <router-link
+            to="/posts"
             class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-100 mr-4"
-          >Posts</a>
-          <a
-            href="#responsive-header"
+          >Posts</router-link>
+          <router-link
+            to="/categories"
             class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-100 mr-4"
-          >Categories</a>
+          >Categories</router-link>
         </div>
         <div>
-          <a
+          <button
             @click="toggleModal"
-            href="#"
             class="inline-block text-sm px-4 py-2 mr-4 leading-none border rounded text-white border-white hover:border-transparent hover:text-purple-900 hover:bg-white mt-4 lg:mt-0"
-          >Add New Post</a>
-          <a
+          >Add New Post</button>
+          <button
             @click="toggleCatModal"
-            href="#"
             class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-purple-900 hover:bg-white mt-4 lg:mt-0"
-          >Add New Category</a>
+          >Add New Category</button>
         </div>
       </div>
     </nav>
-    <add-post v-show="showModal" @close="toggleModal" @submit="addPost" />
-    <add-category v-show="showCatModal" @closecat="toggleCatModal" @submit="AddCategory" />
+    <add-post
+      v-show="showModal"
+      @close="toggleModal"
+      @edit="editPost"
+      @submit="addPost"
+      :closecat="toggleCatModal"
+      :submitCat="addCategory"
+      :showCatModal="showCatModal"
+    />
+    <add-category v-show="showCatModal" @closecat="toggleCatModal" @submitCat="addCategory" />
+    <router-view />
   </div>
 </template>
 <script>
@@ -60,6 +69,7 @@ export default {
   methods: {
     ...mapActions([
       "addPost",
+      "editPost",
       "addCategory",
       "deletePost",
       "deleteCategory",

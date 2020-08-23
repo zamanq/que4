@@ -18,6 +18,14 @@ export default new Vuex.Store({
         addPost(state, newPost) {
             state.posts.push(newPost)
         },
+        editPost(state, editedPost) {
+            state.todos.map(item => {
+                if (item.title === editedPost.title) {
+                    return Object.assign({}, item)
+                }
+                return item
+            })
+        },
         addCategory(state, newCategory) {
             state.categories.push(newCategory)
         },
@@ -31,6 +39,10 @@ export default new Vuex.Store({
     actions: {
         addPost({ commit, dispatch }, newPost) {
             commit('addPost', newPost)
+            dispatch('savePosts')
+        },
+        editPost({ commit, dispatch }, item) {
+            commit('editPost', item)
             dispatch('savePosts')
         },
         addCategory({ commit, dispatch }, newCategory) {

@@ -1,5 +1,5 @@
 <template>
-  <div class="absolute inset-0 bg-black bg-opacity-50 mx-auto">
+  <div class="absolute inset-0 bg-black bg-opacity-50 mx-auto z-20">
     <form @submit.prevent="submit" class="w-1/3 mx-auto bg-white rounded px-8 pt-6 pb-8 mt-10 mb-4">
       <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="post-title">Category title</label>
@@ -47,7 +47,7 @@ export default {
     },
     submit() {
       if (this.category.title !== "") {
-        this.$emit("submit", this.category);
+        this.$emit("submitCat", this.category);
         this.clearForm();
         this.close();
       }

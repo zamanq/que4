@@ -10,7 +10,7 @@ export default new Router({
             path: '/',
             alias: '/posts',
             name: 'posts',
-            component: () => import('./components/posts/Posts')
+            component: () => import('./components/posts/Posts'),
         },
         {
             path: '/categories',
