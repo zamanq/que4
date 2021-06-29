@@ -1,7 +1,7 @@
-# que4
+# Vue CRUD
 
-Que4
+CRUD Operation with Modals using Vue and TailwindCss
 
-- cd to wedevs-crud folder
-- npm install
-- npm run serve
+-   cd to vue-crud folder
+-   npm install
+-   npm run serve
